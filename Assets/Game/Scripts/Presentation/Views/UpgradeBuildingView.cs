@@ -6,7 +6,7 @@ namespace Game.Scripts.Presentation.Views
     {
         public void SetBuildingView(string buildingId)
         {
-            Debug.Log($"[UpgradeBuildingView] SetBuildingView: {buildingId}");
+            Debug.LogError($"[UpgradeBuildingView] SetBuildingView: {buildingId}");
         }
     }
 

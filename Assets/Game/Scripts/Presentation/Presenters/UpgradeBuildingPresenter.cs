@@ -3,6 +3,7 @@ using Game.Scripts.Controllers;
 using Game.Scripts.Domain.MessageDTO;
 using Game.Scripts.Domain.Models;
 using Game.Scripts.Presentation.Views;
+using Game.Scripts.Repositories;
 using MessagePipe;
 using UniRx;
 using VContainer;
@@ -14,18 +15,19 @@ namespace Game.Scripts.Presentation.Presenters
     {
         [Inject] private readonly HeroModel _heroModel;
         [Inject] private readonly IUpgradeBuildingView _upgradeBuildingView;
-        
+        [Inject] private readonly BuildingsDataRepository _buildingsDataRepository;
+
         private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
         private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
-        
+
         private CompositeDisposable _disposables;
-        
+
         public UpgradeBuildingPresenter(ISubscriber<UserInputDTO> subscriber, IPublisher<UpgradeBuildingDTO> publisher)
         {
             _userEventSubscriber = subscriber;
             _upgradeBuildingPublisher = publisher;
         }
-        
+
         void IInitializable.Initialize()
         {
             _disposables = new CompositeDisposable();
@@ -55,7 +57,10 @@ namespace Game.Scripts.Presentation.Presenters
             if (message.InputGroup == InputGroup.Interact)
             {
                 _upgradeBuildingPublisher.Publish(
-                    new UpgradeBuildingDTO(_heroModel.SelectedBuildingId.Value, 100));
+                    new UpgradeBuildingDTO(
+                        _heroModel.SelectedBuildingId.Value,
+                        _buildingsDataRepository.GetBuildingUpgradePrice(_heroModel.SelectedBuildingId.Value)
+                    ));
             }
         }
     }

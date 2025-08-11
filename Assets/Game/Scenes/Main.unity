@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 1370244053}
   - component: {fileID: 1370244052}
   - component: {fileID: 1370244054}
+  - component: {fileID: 1370244055}
   - component: {fileID: 1370244051}
   m_Layer: 0
   m_Name: Installers
@@ -393,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Game.Scripts.Installers.DomainInstaller
+    TypeName: Game.Scripts.Installers.RepositoriesInstaller
   autoRun: 1
   autoInjectGameObjects: []
   _walletWidgetView: {fileID: 720583021}
@@ -447,6 +448,23 @@ MonoBehaviour:
     TypeName: Game.Scripts.Installers.DomainInstaller
   autoRun: 1
   autoInjectGameObjects: []
+--- !u!114 &1370244055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370244047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef52a861d4e648b9a3d10fa524b47588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Game.Scripts.Installers.DomainInstaller
+  autoRun: 1
+  autoInjectGameObjects: []
+  _buildingsDataRepository: {fileID: 11400000, guid: f64f51f2fb824bb4cb6b2a099463ec09, type: 2}
 --- !u!1 &1597565093
 GameObject:
   m_ObjectHideFlags: 0

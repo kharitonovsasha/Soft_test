@@ -2,6 +2,7 @@
 using Game.Scripts.Domain.Models;
 using Game.Scripts.Presentation.Views;
 using UniRx;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -27,6 +28,7 @@ namespace Game.Scripts.Presentation.Presenters
 
         private void SubscribeToWalletChange()
         {
+            Debug.LogError($"SubscribeToWalletChange");
             _heroModel.Wallet
                 .Subscribe(_walletWidgetView.SetWalletView)
                 .AddTo(_disposables);

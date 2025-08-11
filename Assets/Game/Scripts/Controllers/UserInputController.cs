@@ -40,7 +40,6 @@ namespace Game.Scripts.Controllers
         
          private void SubscribeToActions()
         {
-            Debug.Log($"[UserInputController] SubscribeToActions");
             _playerInput.actions[InputGroup.Move.ToString()].performed += OnMovePressHandler;
             _playerInput.actions[InputGroup.Move.ToString()].canceled += OnMovePressHandler;
 
