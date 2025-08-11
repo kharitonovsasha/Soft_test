@@ -59,7 +59,7 @@ namespace Game.Scripts.Presentation.Presenters
             {
                 result += $"ID: {buildingModel.Id} -> Level: {buildingModel.Level.Value}\n";
             }
-            _upgradeBuildingView.ShopLevels(result);
+            _upgradeBuildingView.ShowLevels(result);
         }
 
         private void SubscribeToUserInputEvent()

@@ -4,7 +4,7 @@ namespace Game.Scripts.Presentation.Views
 {
     public class UpgradeBuildingView : MonoBehaviour, IUpgradeBuildingView
     {
-        public void ShopLevels(string text)
+        public void ShowLevels(string text)
         {
             Debug.LogError($"[UpgradeBuildingView] ShopBuildingsLevel: {text}");
         }
@@ -12,6 +12,6 @@ namespace Game.Scripts.Presentation.Views
 
     public interface IUpgradeBuildingView
     {
-        void ShopLevels(string text);
+        void ShowLevels(string text);
     }
 }
