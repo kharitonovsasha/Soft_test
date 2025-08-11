@@ -4,14 +4,14 @@ namespace Game.Scripts.Presentation.Views
 {
     public class UpgradeBuildingView : MonoBehaviour, IUpgradeBuildingView
     {
-        public void SetBuildingView(string buildingId)
+        public void ShopLevels(string text)
         {
-            Debug.LogError($"[UpgradeBuildingView] SetBuildingView: {buildingId}");
+            Debug.LogError($"[UpgradeBuildingView] ShopBuildingsLevel: {text}");
         }
     }
 
     public interface IUpgradeBuildingView
     {
-        void SetBuildingView(string buildingId);
+        void ShopLevels(string text);
     }
 }

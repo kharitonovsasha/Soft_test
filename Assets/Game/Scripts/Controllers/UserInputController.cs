@@ -11,8 +11,8 @@ namespace Game.Scripts.Controllers
     public enum InputGroup
     {
         Move, // WASD 
-        Attack, // enter // select
-        Interact, // E // upgrade
+        Attack, // enter // select next building
+        Interact, // E // upgrade selected building
         Crouch, // C // add wallet
         Jump, // space // spent wallet
     }

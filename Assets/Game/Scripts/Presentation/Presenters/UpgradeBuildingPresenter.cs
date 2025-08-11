@@ -31,7 +31,7 @@ namespace Game.Scripts.Presentation.Presenters
         void IInitializable.Initialize()
         {
             _disposables = new CompositeDisposable();
-            SubscribeToWalletChange();
+            SubscribeToBuildingLevelChange();
             SubscribeToUserInputEvent();
         }
 
@@ -40,11 +40,26 @@ namespace Game.Scripts.Presentation.Presenters
             _disposables?.Dispose();
         }
 
-        private void SubscribeToWalletChange()
+        private void SubscribeToBuildingLevelChange()
         {
-            _heroModel.SelectedBuildingId
-                .Subscribe(_upgradeBuildingView.SetBuildingView)
-                .AddTo(_disposables);
+            foreach (var buildingModel in _heroModel.Buildings)
+            {
+                buildingModel.Level.Subscribe(level =>
+                    {
+                        ShopBuildingsLevel();
+                    })
+                    .AddTo(_disposables);
+            }
+        }
+
+        private void ShopBuildingsLevel()
+        {
+            var result = string.Empty;
+            foreach (var buildingModel in _heroModel.Buildings)
+            {
+                result += $"ID: {buildingModel.Id} -> Level: {buildingModel.Level.Value}\n";
+            }
+            _upgradeBuildingView.ShopLevels(result);
         }
 
         private void SubscribeToUserInputEvent()

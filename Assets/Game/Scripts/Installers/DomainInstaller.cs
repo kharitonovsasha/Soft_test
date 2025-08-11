@@ -21,7 +21,6 @@ namespace Game.Scripts.Installers
             }
 
             builder.RegisterInstance(mockHeroModel).As<HeroModel>();
-            //builder.Register<HeroModel>(Lifetime.Singleton);
         }
     }
 }
