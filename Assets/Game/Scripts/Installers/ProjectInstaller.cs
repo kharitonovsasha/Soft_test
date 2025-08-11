@@ -9,8 +9,6 @@ namespace Game.Scripts.Installers
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("ProjectInstaller Configure");
-            
             builder.RegisterMessagePipe();
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
             

@@ -10,8 +10,6 @@ namespace Game.Scripts.Installers
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("UseCasesInstaller Configure");
-
             builder.RegisterEntryPoint<SelectBuildingUseCase>()
                 .As<IInitializable>()
                 .As<IDisposable>();

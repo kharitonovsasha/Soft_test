@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Domain.MessageDTO
 {
-    public struct UserInputDTO : IDTO
+    public struct UserInputDTO
     {
         public InputGroup InputGroup { get; }
         public Vector2 InputDirection { get; }

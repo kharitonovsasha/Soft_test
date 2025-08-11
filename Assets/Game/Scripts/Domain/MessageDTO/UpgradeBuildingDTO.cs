@@ -1,6 +1,6 @@
 ﻿namespace Game.Scripts.Domain.MessageDTO
 {
-    public struct UpgradeBuildingDTO : IDTO
+    public struct UpgradeBuildingDTO
     {
         public string BuildingId { get; }
         public long UpgradePrice { get; }

@@ -9,8 +9,6 @@ namespace Game.Scripts.Installers
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("DomainInstaller Configure");
-
             // var mockHeroModel = new HeroModel();
             // mockHeroModel.Wallet.Value = 1000;
             // mockHeroModel.SelectedBuildingId.Value = "building_0";

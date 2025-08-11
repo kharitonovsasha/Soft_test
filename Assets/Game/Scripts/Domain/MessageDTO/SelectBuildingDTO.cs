@@ -1,6 +1,6 @@
 ﻿namespace Game.Scripts.Domain.MessageDTO
 {
-    public struct SelectBuildingDTO : IDTO
+    public struct SelectBuildingDTO
     {
         public string BuildingId { get; }
 

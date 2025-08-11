@@ -10,15 +10,21 @@ namespace Game.Scripts.Installers
     public class PresentationInstaller : LifetimeScope
     {
         [SerializeField] private WalletWidgetView _walletWidgetView;
+        [SerializeField] private UpgradeBuildingView _upgradeBuildingView;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("PresentationInstaller Configure");
-            
             builder.RegisterInstance(_walletWidgetView)
-                .As<IWalletWidgetView>();
+                .As<IWalletWidgetView>(); 
+            
+            builder.RegisterInstance(_upgradeBuildingView)
+                .As<IUpgradeBuildingView>();
             
             builder.Register<WalletWidgetPresenter>(Lifetime.Singleton)
+                .As<IInitializable>()
+                .As<IDisposable>();
+            
+            builder.RegisterEntryPoint<UpgradeBuildingPresenter>()
                 .As<IInitializable>()
                 .As<IDisposable>();
         }

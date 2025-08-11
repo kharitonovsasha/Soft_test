@@ -19,11 +19,11 @@ namespace Game.Scripts.Controllers
     
     public class UserInputController : IInitializable, IDisposable
     {
-        private readonly IPublisher<IDTO> _publisher;
+        private readonly IPublisher<UserInputDTO> _publisher;
         
         [Inject] private readonly PlayerInput _playerInput;
 
-        public UserInputController(IPublisher<IDTO> publisher)
+        public UserInputController(IPublisher<UserInputDTO> publisher)
         {
             _publisher = publisher;
         }
@@ -82,7 +82,6 @@ namespace Game.Scripts.Controllers
 
         private void OnInteractPressHandler(InputAction.CallbackContext context)
         {
-            Debug.Log($"[UserInputController] OnInteractPressHandler");
             _publisher.Publish(new UserInputDTO(InputGroup.Interact, Vector2.zero));
         }
 

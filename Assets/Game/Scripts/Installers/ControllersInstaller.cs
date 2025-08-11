@@ -13,8 +13,6 @@ namespace Game.Scripts.Installers
 
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("ControllersInstaller Configure");
-
             builder.RegisterInstance(_playerInput);
             builder.RegisterEntryPoint<UserInputController>(Lifetime.Singleton)
                 .As<IInitializable>()

@@ -5,7 +5,6 @@ using Game.Scripts.Domain.Models;
 using Game.Scripts.Presentation.Views;
 using MessagePipe;
 using UniRx;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -20,6 +19,12 @@ namespace Game.Scripts.Presentation.Presenters
         private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
         
         private CompositeDisposable _disposables;
+        
+        public UpgradeBuildingPresenter(ISubscriber<UserInputDTO> subscriber, IPublisher<UpgradeBuildingDTO> publisher)
+        {
+            _userEventSubscriber = subscriber;
+            _upgradeBuildingPublisher = publisher;
+        }
         
         void IInitializable.Initialize()
         {
@@ -47,7 +52,6 @@ namespace Game.Scripts.Presentation.Presenters
 
         private void Handle(UserInputDTO message)
         {
-            Debug.LogError($"OnUserInputEventHandler: {message.InputGroup.ToString()}");
             if (message.InputGroup == InputGroup.Interact)
             {
                 _upgradeBuildingPublisher.Publish(
