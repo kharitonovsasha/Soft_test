@@ -6,7 +6,7 @@ namespace Game.Scripts.Views
     {
         public void SetWalletView(long count)
         {
-            Debug.Log($"[WalletWidgetView] Set wallet view: {count}");
+            Debug.Log($"[WalletWidgetView] SetWalletView: {count}");
         }
     }
 

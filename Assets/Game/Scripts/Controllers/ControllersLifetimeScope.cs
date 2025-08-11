@@ -13,6 +13,8 @@ namespace Game.Scripts
 
         protected override void Configure(IContainerBuilder builder)
         {
+            Debug.LogError("ControllersLifetimeScope Configure");
+
             builder.RegisterInstance(_playerInput);
             builder.Register<UserInputController>(Lifetime.Singleton)
                 .AsSelf()

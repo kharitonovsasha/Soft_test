@@ -1,4 +1,5 @@
 ﻿using MessagePipe;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -8,10 +9,13 @@ namespace Game.Scripts
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            Debug.LogError("ProjectLifetimeScope Configure");
             builder.RegisterMessagePipe();
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
             
-            //builder.RegisterEntryPoint<MyEntryPoint>();
+            //Start
+            builder.Register<Bootstrap>(Lifetime.Singleton)
+                .As<IInitializable>();
         }
     }
 }

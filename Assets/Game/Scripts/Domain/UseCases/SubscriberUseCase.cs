@@ -6,7 +6,7 @@ using VContainer.Unity;
 
 namespace Game.Scripts.Domain.UseCases
 {
-    public abstract class BaseUseCase<T> : IStartable, IDisposable
+    public abstract class SubscriberUseCase<T> : IStartable, IDisposable
     {
         [Inject] private readonly HeroModel _heroModel;
         

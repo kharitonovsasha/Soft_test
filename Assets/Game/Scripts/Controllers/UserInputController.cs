@@ -10,20 +10,17 @@ namespace Game.Scripts.Controllers
 {
     public enum InputGroup
     {
-        None = 0,
-        Move, // WASD / левый стик
-        Look, // мышь / правый стик
-        Attack, // enter // west
-        Interact, // E // north
-        Crouch, // C // east
-        Jump, // space // southc
+        Move, // WASD 
+        Attack, // enter // select
+        Interact, // E // upgrade
+        Crouch, // C // add wallet
+        Jump, // space // spent wallet
     }
     
     public class UserInputController : IStartable, IDisposable
     {
         [Inject] private readonly PlayerInput _playerInput;
-        private readonly IPublisher<UserInputEvent> _publisher;
-
+        private readonly IPublisher<IEvent> _publisher;
         
         void IStartable.Start()
         {
@@ -37,11 +34,9 @@ namespace Game.Scripts.Controllers
         
          private void SubscribeToActions()
         {
+            Debug.Log($"[UserInputController] SubscribeToActions");
             _playerInput.actions[InputGroup.Move.ToString()].performed += OnMovePressHandler;
             _playerInput.actions[InputGroup.Move.ToString()].canceled += OnMovePressHandler;
-
-            _playerInput.actions[InputGroup.Look.ToString()].performed += OnLookPressHandler;
-            _playerInput.actions[InputGroup.Look.ToString()].canceled += OnLookPressHandler;
 
             _playerInput.actions[InputGroup.Attack.ToString()].started += OnAttackPressHandler;
             _playerInput.actions[InputGroup.Interact.ToString()].started += OnInteractPressHandler;
@@ -53,9 +48,6 @@ namespace Game.Scripts.Controllers
         {
             _playerInput.actions[InputGroup.Move.ToString()].performed -= OnMovePressHandler;
             _playerInput.actions[InputGroup.Move.ToString()].canceled -= OnMovePressHandler;
-
-            _playerInput.actions[InputGroup.Look.ToString()].performed -= OnLookPressHandler;
-            _playerInput.actions[InputGroup.Look.ToString()].canceled -= OnLookPressHandler;
 
             _playerInput.actions[InputGroup.Attack.ToString()].started -= OnAttackPressHandler;
             _playerInput.actions[InputGroup.Interact.ToString()].started -= OnInteractPressHandler;
@@ -77,20 +69,6 @@ namespace Game.Scripts.Controllers
             }
         }
 
-        private void OnLookPressHandler(InputAction.CallbackContext context)
-        {
-            var input = context.ReadValue<Vector2>();
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    _publisher.Publish(new UserInputEvent(InputGroup.Look, input));
-                    break;
-                case InputActionPhase.Canceled:
-                    _publisher.Publish(new UserInputEvent(InputGroup.Look, Vector2.zero));
-                    break;
-            }
-        }
-
         private void OnAttackPressHandler(InputAction.CallbackContext context)
         {
             _publisher.Publish(new UserInputEvent(InputGroup.Attack, Vector2.zero));
@@ -98,6 +76,7 @@ namespace Game.Scripts.Controllers
 
         private void OnInteractPressHandler(InputAction.CallbackContext context)
         {
+            Debug.Log($"[UserInputController] OnInteractPressHandler");
             _publisher.Publish(new UserInputEvent(InputGroup.Interact, Vector2.zero));
         }
 

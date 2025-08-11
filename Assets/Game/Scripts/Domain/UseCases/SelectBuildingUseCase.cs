@@ -4,7 +4,7 @@ using VContainer;
 
 namespace Game.Scripts.Domain.UseCases
 {
-    public class SelectBuildingUseCase : BaseUseCase<SelectBuildingEvent>
+    public class SelectBuildingUseCase : SubscriberUseCase<SelectBuildingEvent>
     {
         [Inject] private readonly HeroModel _heroModel;
 

@@ -12,10 +12,11 @@ namespace Game.Scripts.Presenters
         [Inject] private readonly HeroModel _heroModel;
         [Inject] private readonly IWalletWidgetView _walletWidgetView;
         
-        private CompositeDisposable _disposables = new();
+        private CompositeDisposable _disposables;
         
         void IStartable.Start()
         {
+            _disposables = new CompositeDisposable();
             SubscribeToWalletChange();
         }
 
