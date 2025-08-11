@@ -1,5 +1,5 @@
 ﻿using System;
-using Game.Scripts.MessagePipe;
+using Game.Scripts.Domain.MessageDTO;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,12 +17,18 @@ namespace Game.Scripts.Controllers
         Jump, // space // spent wallet
     }
     
-    public class UserInputController : IStartable, IDisposable
+    public class UserInputController : IInitializable, IDisposable
     {
-        [Inject] private readonly PlayerInput _playerInput;
-        private readonly IPublisher<IEvent> _publisher;
+        private readonly IPublisher<IDTO> _publisher;
         
-        void IStartable.Start()
+        [Inject] private readonly PlayerInput _playerInput;
+
+        public UserInputController(IPublisher<IDTO> publisher)
+        {
+            _publisher = publisher;
+        }
+
+        void IInitializable.Initialize()
         {
             SubscribeToActions();
         }
@@ -61,33 +67,33 @@ namespace Game.Scripts.Controllers
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    _publisher.Publish(new UserInputEvent(InputGroup.Move, input));
+                    _publisher.Publish(new UserInputDTO(InputGroup.Move, input));
                     break;
                 case InputActionPhase.Canceled:
-                    _publisher.Publish(new UserInputEvent(InputGroup.Move, Vector2.zero));
+                    _publisher.Publish(new UserInputDTO(InputGroup.Move, Vector2.zero));
                     break;
             }
         }
 
         private void OnAttackPressHandler(InputAction.CallbackContext context)
         {
-            _publisher.Publish(new UserInputEvent(InputGroup.Attack, Vector2.zero));
+            _publisher.Publish(new UserInputDTO(InputGroup.Attack, Vector2.zero));
         }
 
         private void OnInteractPressHandler(InputAction.CallbackContext context)
         {
             Debug.Log($"[UserInputController] OnInteractPressHandler");
-            _publisher.Publish(new UserInputEvent(InputGroup.Interact, Vector2.zero));
+            _publisher.Publish(new UserInputDTO(InputGroup.Interact, Vector2.zero));
         }
 
         private void OnCrouchPressHandler(InputAction.CallbackContext context)
         {
-            _publisher.Publish(new UserInputEvent(InputGroup.Crouch, Vector2.zero));
+            _publisher.Publish(new UserInputDTO(InputGroup.Crouch, Vector2.zero));
         }
 
         private void OnJumpPressHandler(InputAction.CallbackContext context)
         {
-            _publisher.Publish(new UserInputEvent(InputGroup.Jump, Vector2.zero));
+            _publisher.Publish(new UserInputDTO(InputGroup.Jump, Vector2.zero));
         }
     }
 }

@@ -309,12 +309,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370244049}
-  - component: {fileID: 1370244052}
   - component: {fileID: 1370244053}
-  - component: {fileID: 1370244050}
+  - component: {fileID: 1370244052}
+  - component: {fileID: 1370244054}
   - component: {fileID: 1370244051}
   m_Layer: 0
-  m_Name: Lifescopes
+  m_Name: Installers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,23 +336,6 @@ Transform:
   - {fileID: 1597565095}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1370244050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370244047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b17f7628e34af8a727a3efffb8cd92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentReference:
-    TypeName: Game.Scripts.Domain.DomainLifetimeScope
-  autoRun: 1
-  autoInjectGameObjects: []
-  _walletWidgetView: {fileID: 720583021}
 --- !u!114 &1370244051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,9 +349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Game.Scripts.Views.ViewsLifetimeScope
+    TypeName: Game.Scripts.Installers.DomainInstaller
   autoRun: 1
   autoInjectGameObjects: []
+  _walletWidgetView: {fileID: 720583021}
 --- !u!114 &1370244052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Game.Scripts.ProjectLifetimeScope
+    TypeName: Game.Scripts.Installers.ProjectInstaller
   autoRun: 1
   autoInjectGameObjects: []
 --- !u!114 &1370244053
@@ -398,10 +382,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Game.Scripts.ProjectLifetimeScope
+    TypeName: Game.Scripts.Installers.ProjectInstaller
   autoRun: 1
   autoInjectGameObjects: []
   _playerInput: {fileID: 1597565094}
+--- !u!114 &1370244054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370244047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedb67b42064484c845e8250b986b5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Game.Scripts.Installers.DomainInstaller
+  autoRun: 1
+  autoInjectGameObjects: []
 --- !u!1 &1597565093
 GameObject:
   m_ObjectHideFlags: 0

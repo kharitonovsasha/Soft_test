@@ -1,29 +1,27 @@
 ﻿using System;
 using Game.Scripts.Controllers;
+using Game.Scripts.Domain.MessageDTO;
 using Game.Scripts.Domain.Models;
-using Game.Scripts.MessagePipe;
-using Game.Scripts.Views;
+using Game.Scripts.Presentation.Views;
 using MessagePipe;
 using UniRx;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Presenters
+namespace Game.Scripts.Presentation.Presenters
 {
-    public class UpgradeBuildingPresenter : IStartable, IDisposable
+    public class UpgradeBuildingPresenter : IInitializable, IDisposable
     {
         [Inject] private readonly HeroModel _heroModel;
         [Inject] private readonly IUpgradeBuildingView _upgradeBuildingView;
         
-        private readonly ISubscriber<UserInputEvent> _userEventSubscriber;
-        private IDisposable _userEventSubscription;
-        
-        private readonly IPublisher<UpgradeBuildingEvent> _upgradeBuildingPublisher;
+        private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
+        private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
         
         private CompositeDisposable _disposables;
         
-        void IStartable.Start()
+        void IInitializable.Initialize()
         {
             _disposables = new CompositeDisposable();
             SubscribeToWalletChange();
@@ -33,7 +31,6 @@ namespace Game.Scripts.Presenters
         void IDisposable.Dispose()
         {
             _disposables?.Dispose();
-            _userEventSubscription?.Dispose();
         }
 
         private void SubscribeToWalletChange()
@@ -45,16 +42,16 @@ namespace Game.Scripts.Presenters
 
         private void SubscribeToUserInputEvent()
         {
-            _userEventSubscription = _userEventSubscriber.Subscribe(OnUserInputEventHandler);
+            _disposables.Add(_userEventSubscriber.Subscribe(Handle));
         }
 
-        private void OnUserInputEventHandler(UserInputEvent userInputEvent)
+        private void Handle(UserInputDTO message)
         {
-            Debug.LogError($"OnUserInputEventHandler: {userInputEvent.InputGroup.ToString()}");
-            if (userInputEvent.InputGroup == InputGroup.Interact)
+            Debug.LogError($"OnUserInputEventHandler: {message.InputGroup.ToString()}");
+            if (message.InputGroup == InputGroup.Interact)
             {
                 _upgradeBuildingPublisher.Publish(
-                    new UpgradeBuildingEvent(_heroModel.SelectedBuildingId.Value, 100));
+                    new UpgradeBuildingDTO(_heroModel.SelectedBuildingId.Value, 100));
             }
         }
     }

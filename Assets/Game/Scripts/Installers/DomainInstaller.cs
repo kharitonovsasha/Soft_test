@@ -1,17 +1,15 @@
-﻿using System;
-using Game.Scripts.Domain.Models;
-using Game.Scripts.Domain.UseCases;
+﻿using Game.Scripts.Domain.Models;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Domain
+namespace Game.Scripts.Installers
 {
-    public class DomainLifetimeScope : LifetimeScope
+    public class DomainInstaller : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("DomainLifetimeScope Configure");
+            Debug.LogError("DomainInstaller Configure");
 
             // var mockHeroModel = new HeroModel();
             // mockHeroModel.Wallet.Value = 1000;
@@ -27,12 +25,7 @@ namespace Game.Scripts.Domain
 
             builder.Register<HeroModel>(Lifetime.Singleton);
 
-            // builder.Register<SelectBuildingUseCase>(Lifetime.Singleton)
-            //     .As<IStartable>()
-            //     .As<IDisposable>();
-            // builder.Register<UpgradeBuildingUseCase>(Lifetime.Singleton)
-            //     .As<IStartable>()
-            //     .As<IDisposable>();
+
         }
     }
 }

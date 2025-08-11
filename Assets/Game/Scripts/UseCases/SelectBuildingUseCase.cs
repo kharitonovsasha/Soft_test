@@ -1,0 +1,40 @@
+﻿using System;
+using Game.Scripts.Domain.MessageDTO;
+using Game.Scripts.Domain.Models;
+using MessagePipe;
+using VContainer;
+using VContainer.Unity;
+
+namespace Game.Scripts.UseCases
+{
+    public class SelectBuildingUseCase : IInitializable, IDisposable
+    {
+        private readonly ISubscriber<SelectBuildingDTO> _subscriber;
+        private IDisposable _subscription;
+        
+        [Inject] private readonly HeroModel _heroModel;
+
+        public SelectBuildingUseCase(ISubscriber<SelectBuildingDTO> subscriber)
+        {
+            _subscriber = subscriber;
+        }
+        
+        void IInitializable.Initialize()
+        {
+            _subscription = _subscriber.Subscribe(Handle);
+        }
+
+        void IDisposable.Dispose()
+        {
+            _subscription?.Dispose();
+        }
+        
+        private void Handle(SelectBuildingDTO message)
+        {
+            if (_heroModel.SelectedBuildingId.Value != message.BuildingId)
+            {
+                _heroModel.SelectedBuildingId.Value = message.BuildingId;
+            }
+        }
+    }
+}

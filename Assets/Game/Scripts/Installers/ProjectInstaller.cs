@@ -3,13 +3,14 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts
+namespace Game.Scripts.Installers
 {
-    public class ProjectLifetimeScope : LifetimeScope
+    public class ProjectInstaller : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("ProjectLifetimeScope Configure");
+            Debug.LogError("ProjectInstaller Configure");
+            
             builder.RegisterMessagePipe();
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
             

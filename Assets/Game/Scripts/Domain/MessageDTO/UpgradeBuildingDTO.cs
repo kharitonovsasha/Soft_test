@@ -1,11 +1,11 @@
-﻿namespace Game.Scripts.MessagePipe
+﻿namespace Game.Scripts.Domain.MessageDTO
 {
-    public struct UpgradeBuildingEvent : IEvent
+    public struct UpgradeBuildingDTO : IDTO
     {
         public string BuildingId { get; }
         public long UpgradePrice { get; }
 
-        public UpgradeBuildingEvent(string buildingId, long upgradePrice)
+        public UpgradeBuildingDTO(string buildingId, long upgradePrice)
         {
             BuildingId = buildingId;
             UpgradePrice = upgradePrice;

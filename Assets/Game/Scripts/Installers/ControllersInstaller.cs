@@ -5,20 +5,19 @@ using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts
+namespace Game.Scripts.Installers
 {
-    public class ControllersLifetimeScope : LifetimeScope
+    public class ControllersInstaller : LifetimeScope
     {
         [SerializeField] private PlayerInput _playerInput;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.LogError("ControllersLifetimeScope Configure");
+            Debug.LogError("ControllersInstaller Configure");
 
             builder.RegisterInstance(_playerInput);
-            builder.Register<UserInputController>(Lifetime.Singleton)
-                .AsSelf()
-                .As<IStartable>()
+            builder.RegisterEntryPoint<UserInputController>(Lifetime.Singleton)
+                .As<IInitializable>()
                 .As<IDisposable>();
         }
     }

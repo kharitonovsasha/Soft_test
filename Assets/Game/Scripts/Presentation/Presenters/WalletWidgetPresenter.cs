@@ -1,20 +1,20 @@
 ﻿using System;
 using Game.Scripts.Domain.Models;
-using Game.Scripts.Views;
+using Game.Scripts.Presentation.Views;
 using UniRx;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Presenters
+namespace Game.Scripts.Presentation.Presenters
 {
-    public class WalletWidgetPresenter : IStartable, IDisposable
+    public class WalletWidgetPresenter : IInitializable, IDisposable
     {
         [Inject] private readonly HeroModel _heroModel;
         [Inject] private readonly IWalletWidgetView _walletWidgetView;
         
         private CompositeDisposable _disposables;
         
-        void IStartable.Start()
+        void IInitializable.Initialize()
         {
             _disposables = new CompositeDisposable();
             SubscribeToWalletChange();

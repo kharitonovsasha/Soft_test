@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts.Views
+namespace Game.Scripts.Presentation.Views
 {
     public class WalletWidgetView : MonoBehaviour, IWalletWidgetView
     {
