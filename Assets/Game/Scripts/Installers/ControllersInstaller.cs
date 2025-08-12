@@ -14,7 +14,7 @@ namespace Game.Scripts.Installers
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterInstance(_playerInput);
-            builder.RegisterEntryPoint<UserInputController>(Lifetime.Singleton)
+            builder.Register<UserInputController>(Lifetime.Singleton)
                 .As<IInitializable>()
                 .As<IDisposable>();
         }

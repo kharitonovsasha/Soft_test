@@ -10,14 +10,8 @@ namespace Game.Scripts.Controllers
 {
     public class UserInputController : IInitializable, IDisposable
     {
-        private readonly IPublisher<UserInputDTO> _publisher;
-        
         [Inject] private readonly PlayerInput _playerInput;
-
-        public UserInputController(IPublisher<UserInputDTO> publisher)
-        {
-            _publisher = publisher;
-        }
+        [Inject] private readonly IPublisher<UserInputDTO> _publisher;
 
         void IInitializable.Initialize()
         {
