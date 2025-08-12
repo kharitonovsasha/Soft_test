@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.ContractsInterfaces.Presentation.View;
+using UnityEngine;
 
 namespace Game.Scripts.Presentation.Views
 {
@@ -8,10 +9,5 @@ namespace Game.Scripts.Presentation.Views
         {
             Debug.LogError($"[UpgradeBuildingView] ShopBuildingsLevel: {text}");
         }
-    }
-
-    public interface IUpgradeBuildingView
-    {
-        void ShowLevels(string text);
     }
 }

@@ -8,15 +8,6 @@ using VContainer.Unity;
 
 namespace Game.Scripts.Controllers
 {
-    public enum InputGroup
-    {
-        Move, // WASD 
-        Attack, // enter // select next building
-        Interact, // E // upgrade selected building
-        Crouch, // C // add wallet
-        Jump, // space // spent wallet
-    }
-    
     public class UserInputController : IInitializable, IDisposable
     {
         private readonly IPublisher<UserInputDTO> _publisher;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.ContractsInterfaces.Presentation.View;
+using UnityEngine;
 
 namespace Game.Scripts.Presentation.Views
 {
@@ -8,10 +9,5 @@ namespace Game.Scripts.Presentation.Views
         {
             Debug.LogError($"[SelectedBuildingView] ShowSelectedBuilding: {text}");
         }
-    }
-
-    public interface ISelectBuildingView
-    {
-        void ShowSelectedBuilding(string text);
     }
 }

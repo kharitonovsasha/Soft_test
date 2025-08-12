@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Scripts.ContractsInterfaces.Repositories;
 using UnityEngine;
 
 namespace Game.Scripts.Repositories
 {
     [CreateAssetMenu(fileName = "BuildingsDataRepository", menuName = "Data/BuildingsDataRepository")]
-    public class BuildingsDataRepository : ScriptableObject
+    public class BuildingsDataRepository : ScriptableObject, IBuildingsDataRepository
     {
         public List<BuildingData> BuildingsData;
 

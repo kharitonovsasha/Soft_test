@@ -1,6 +1,6 @@
 ﻿using System;
-using Game.Scripts.Domain.Models;
-using Game.Scripts.Presentation.Views;
+using Game.Scripts.ContractsInterfaces.Domain;
+using Game.Scripts.ContractsInterfaces.Presentation.View;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -10,7 +10,7 @@ namespace Game.Scripts.Presentation.Presenters
 {
     public class WalletWidgetPresenter : IInitializable, IDisposable
     {
-        [Inject] private readonly HeroModel _heroModel;
+        [Inject] private readonly IHeroModel _heroModel;
         [Inject] private readonly IWalletWidgetView _walletWidgetView;
         
         private CompositeDisposable _disposables;

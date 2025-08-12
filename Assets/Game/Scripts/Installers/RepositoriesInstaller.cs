@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Repositories;
+﻿using Game.Scripts.ContractsInterfaces.Repositories;
+using Game.Scripts.Repositories;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -12,7 +13,7 @@ namespace Game.Scripts.Installers
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterInstance(_buildingsDataRepository)
-                .As<BuildingsDataRepository>(); 
+                .As<IBuildingsDataRepository>(); 
         }
     }
 }

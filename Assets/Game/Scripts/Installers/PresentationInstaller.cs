@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.ContractsInterfaces.Presentation.View;
 using Game.Scripts.Presentation.Presenters;
 using Game.Scripts.Presentation.Views;
 using UnityEngine;

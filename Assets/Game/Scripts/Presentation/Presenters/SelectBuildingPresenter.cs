@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Game.Scripts.Controllers;
+using Game.Scripts.ContractsInterfaces.Domain;
+using Game.Scripts.ContractsInterfaces.Presentation.View;
 using Game.Scripts.Domain.MessageDTO;
-using Game.Scripts.Domain.Models;
-using Game.Scripts.Presentation.Views;
 using MessagePipe;
 using UniRx;
 using VContainer;
@@ -13,7 +12,7 @@ namespace Game.Scripts.Presentation.Presenters
 {
     public class SelectBuildingPresenter : IInitializable, IDisposable
     {
-        [Inject] private readonly HeroModel _heroModel;
+        [Inject] private readonly IHeroModel _heroModel;
         [Inject] private readonly ISelectBuildingView _selectBuildingView;
 
         private readonly ISubscriber<UserInputDTO> _userEventSubscriber;

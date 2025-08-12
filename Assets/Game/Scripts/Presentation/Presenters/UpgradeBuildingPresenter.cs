@@ -1,9 +1,8 @@
 ﻿using System;
-using Game.Scripts.Controllers;
+using Game.Scripts.ContractsInterfaces.Domain;
+using Game.Scripts.ContractsInterfaces.Presentation.View;
+using Game.Scripts.ContractsInterfaces.Repositories;
 using Game.Scripts.Domain.MessageDTO;
-using Game.Scripts.Domain.Models;
-using Game.Scripts.Presentation.Views;
-using Game.Scripts.Repositories;
 using MessagePipe;
 using UniRx;
 using VContainer;
@@ -13,9 +12,9 @@ namespace Game.Scripts.Presentation.Presenters
 {
     public class UpgradeBuildingPresenter : IInitializable, IDisposable
     {
-        [Inject] private readonly HeroModel _heroModel;
+        [Inject] private readonly IHeroModel _heroModel;
         [Inject] private readonly IUpgradeBuildingView _upgradeBuildingView;
-        [Inject] private readonly BuildingsDataRepository _buildingsDataRepository;
+        [Inject] private readonly IBuildingsDataRepository _buildingsDataRepository;
 
         private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
         private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
@@ -44,10 +43,7 @@ namespace Game.Scripts.Presentation.Presenters
         {
             foreach (var buildingModel in _heroModel.Buildings)
             {
-                buildingModel.Level.Subscribe(level =>
-                    {
-                        ShopBuildingsLevel();
-                    })
+                buildingModel.Level.Subscribe(level => { ShopBuildingsLevel(); })
                     .AddTo(_disposables);
             }
         }
@@ -59,6 +55,7 @@ namespace Game.Scripts.Presentation.Presenters
             {
                 result += $"ID: {buildingModel.Id} -> Level: {buildingModel.Level.Value}\n";
             }
+
             _upgradeBuildingView.ShowLevels(result);
         }
 

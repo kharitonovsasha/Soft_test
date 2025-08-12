@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Domain.Models;
+﻿using Game.Scripts.ContractsInterfaces.Domain;
+using Game.Scripts.Domain.Models;
 using VContainer;
 using VContainer.Unity;
 
@@ -20,7 +21,7 @@ namespace Game.Scripts.Installers
                 });
             }
 
-            builder.RegisterInstance(mockHeroModel).As<HeroModel>();
+            builder.RegisterInstance(mockHeroModel).As<IHeroModel>();
         }
     }
 }

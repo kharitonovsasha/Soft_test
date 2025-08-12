@@ -1,6 +1,6 @@
 ﻿using System;
+using Game.Scripts.ContractsInterfaces.Domain;
 using Game.Scripts.Domain.MessageDTO;
-using Game.Scripts.Domain.Models;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
@@ -13,7 +13,7 @@ namespace Game.Scripts.UseCases
         private readonly ISubscriber<UpgradeBuildingDTO> _subscriber;
         private IDisposable _subscription;
 
-        [Inject] private readonly HeroModel _heroModel;
+        [Inject] private readonly IHeroModel _heroModel;
 
         public UpgradeBuildingUseCase(ISubscriber<UpgradeBuildingDTO> subscriber)
         {

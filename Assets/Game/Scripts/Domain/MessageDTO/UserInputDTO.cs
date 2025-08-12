@@ -1,8 +1,16 @@
-﻿using Game.Scripts.Controllers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Scripts.Domain.MessageDTO
 {
+    public enum InputGroup
+    {
+        Move, // WASD 
+        Attack, // enter // select next building
+        Interact, // E // upgrade selected building
+        Crouch, // C // add wallet
+        Jump, // space // spent wallet
+    }
+    
     public struct UserInputDTO
     {
         public InputGroup InputGroup { get; }

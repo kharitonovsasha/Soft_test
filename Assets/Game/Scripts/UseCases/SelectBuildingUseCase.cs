@@ -1,6 +1,6 @@
 ﻿using System;
+using Game.Scripts.ContractsInterfaces.Domain;
 using Game.Scripts.Domain.MessageDTO;
-using Game.Scripts.Domain.Models;
 using MessagePipe;
 using VContainer;
 using VContainer.Unity;
@@ -12,7 +12,7 @@ namespace Game.Scripts.UseCases
         private readonly ISubscriber<SelectBuildingDTO> _subscriber;
         private IDisposable _subscription;
         
-        [Inject] private readonly HeroModel _heroModel;
+        [Inject] private readonly IHeroModel _heroModel;
 
         public SelectBuildingUseCase(ISubscriber<SelectBuildingDTO> subscriber)
         {
