@@ -13,7 +13,7 @@ namespace Game.Scripts.UseCases
         private readonly ISubscriber<UpgradeBuildingDTO> _subscriber;
         private IDisposable _subscription;
 
-        [Inject] private readonly IHeroModel _heroModel;
+        [Inject] private readonly IProfileModel _profileModel;
 
         public UpgradeBuildingUseCase(ISubscriber<UpgradeBuildingDTO> subscriber)
         {
@@ -32,10 +32,10 @@ namespace Game.Scripts.UseCases
 
         private void Handle(UpgradeBuildingDTO message)
         {
-            if (_heroModel.Wallet.Value >= message.UpgradePrice)
+            if (_profileModel.Wallet.Value >= message.UpgradePrice)
             {
-                _heroModel.Wallet.Value -= message.UpgradePrice;
-                foreach (var buildingModel in _heroModel.Buildings)
+                _profileModel.Wallet.Value -= message.UpgradePrice;
+                foreach (var buildingModel in _profileModel.Buildings)
                 {
                     if (buildingModel.Id.Value == message.BuildingId)
                     {

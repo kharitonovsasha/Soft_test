@@ -7,7 +7,7 @@ namespace Game.Scripts.Presentation.Presenters
 {
     public class WalletLayoutPresenter : LayoutPresenterBase<WalletLayoutView>
     {
-        [Inject] private readonly IHeroModel _heroModel;
+        [Inject] private readonly IProfileModel _profileModel;
         
         private CompositeDisposable _disposables;
         
@@ -26,7 +26,7 @@ namespace Game.Scripts.Presentation.Presenters
 
         private void SubscribeToWalletChange()
         {
-            _heroModel.Wallet
+            _profileModel.Wallet
                 .Subscribe(layoutView.SetWalletView)
                 .AddTo(_disposables);
         }

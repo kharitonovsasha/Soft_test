@@ -9,19 +9,19 @@ namespace Game.Scripts.Installers
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            var mockHeroModel = new HeroModel();
-            mockHeroModel.Wallet.Value = 3000;
-            mockHeroModel.SelectedBuildingId.Value = "building_0";
+            var mockProfile = new ProfileModel();
+            mockProfile.Wallet.Value = 3000;
+            mockProfile.SelectedBuildingId.Value = "building_0";
             for (var i = 0; i < 5; i++)
             {
-                mockHeroModel.Buildings.Add(new BuildingModel()
+                mockProfile.Buildings.Add(new BuildingModel()
                 {
                     Id = new ($"building_{i}"),
                     Level = new (0)
                 });
             }
 
-            builder.RegisterInstance(mockHeroModel).As<IHeroModel>();
+            builder.RegisterInstance(mockProfile).As<IProfileModel>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.ContractsInterfaces.Domain
 {
-    public interface IHeroModel
+    public interface IProfileModel
     {
         public ReactiveProperty<long> Wallet { get; set; }
         public ReactiveProperty<string> SelectedBuildingId { get; set; }

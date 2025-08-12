@@ -12,7 +12,7 @@ namespace Game.Scripts.Presentation.Presenters
 {
     public class MainLayoutPresenter : LayoutPresenterBase<MainLayoutView>
     {
-        [Inject] private readonly IHeroModel _heroModel;
+        [Inject] private readonly IProfileModel _profileModel;
         [Inject] private readonly IBuildingsDataRepository _buildingsDataRepository;
 
         private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
@@ -53,13 +53,13 @@ namespace Game.Scripts.Presentation.Presenters
 
         private void SubscribeToSelectedBuildingChange()
         {
-            _heroModel.SelectedBuildingId.Subscribe(_ => UpdateInfoText())
+            _profileModel.SelectedBuildingId.Subscribe(_ => UpdateInfoText())
                 .AddTo(_disposables);
         }
         
         private void SubscribeToBuildingLevelChange()
         {
-            foreach (var buildingModel in _heroModel.Buildings)
+            foreach (var buildingModel in _profileModel.Buildings)
             {
                 buildingModel.Level.Subscribe(level => { UpdateInfoText(); })
                     .AddTo(_disposables);
@@ -69,9 +69,9 @@ namespace Game.Scripts.Presentation.Presenters
         private void UpdateInfoText()
         {
             var result = string.Empty;
-            foreach (var buildingModel in _heroModel.Buildings)
+            foreach (var buildingModel in _profileModel.Buildings)
             {
-                var isSelected = buildingModel.Id.Value == _heroModel.SelectedBuildingId.Value;
+                var isSelected = buildingModel.Id.Value == _profileModel.SelectedBuildingId.Value;
                 var color = isSelected ? _selectedColor : _defaultColor;
                 result += $"<color=#{color}>ID: {buildingModel.Id.Value}  |  Level: {buildingModel.Level.Value}</color>\n";
             }
@@ -98,12 +98,12 @@ namespace Game.Scripts.Presentation.Presenters
 
         private void PublishSelectNextBuilding()
         {
-            var selectedModel = _heroModel.Buildings.First(m => m.Id.Value == _heroModel.SelectedBuildingId.Value);
-            var index = _heroModel.Buildings.IndexOf(selectedModel);
+            var selectedModel = _profileModel.Buildings.First(m => m.Id.Value == _profileModel.SelectedBuildingId.Value);
+            var index = _profileModel.Buildings.IndexOf(selectedModel);
             index++;
-            if (index >= _heroModel.Buildings.Count)
+            if (index >= _profileModel.Buildings.Count)
                 index = 0;
-            var nextBuilding = _heroModel.Buildings[index];
+            var nextBuilding = _profileModel.Buildings[index];
 
             _selectBuildingPublisher.Publish(
                 new SelectBuildingDTO(nextBuilding.Id.Value)
@@ -114,8 +114,8 @@ namespace Game.Scripts.Presentation.Presenters
         {
             _upgradeBuildingPublisher.Publish(
                 new UpgradeBuildingDTO(
-                    _heroModel.SelectedBuildingId.Value,
-                    _buildingsDataRepository.GetBuildingUpgradePrice(_heroModel.SelectedBuildingId.Value)
+                    _profileModel.SelectedBuildingId.Value,
+                    _buildingsDataRepository.GetBuildingUpgradePrice(_profileModel.SelectedBuildingId.Value)
                 ));
         }
     }

@@ -3,7 +3,7 @@ using UniRx;
 
 namespace Game.Scripts.Domain.Models
 {
-    public class HeroModel : IHeroModel
+    public class ProfileModel : IProfileModel
     {
         public ReactiveProperty<long> Wallet { get; set; } = new(0);
         public ReactiveProperty<string> SelectedBuildingId { get; set; } = new(string.Empty);

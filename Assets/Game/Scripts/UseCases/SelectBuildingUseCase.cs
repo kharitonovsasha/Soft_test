@@ -12,7 +12,7 @@ namespace Game.Scripts.UseCases
         private readonly ISubscriber<SelectBuildingDTO> _subscriber;
         private IDisposable _subscription;
         
-        [Inject] private readonly IHeroModel _heroModel;
+        [Inject] private readonly IProfileModel _profileModel;
 
         public SelectBuildingUseCase(ISubscriber<SelectBuildingDTO> subscriber)
         {
@@ -31,9 +31,9 @@ namespace Game.Scripts.UseCases
         
         private void Handle(SelectBuildingDTO message)
         {
-            if (_heroModel.SelectedBuildingId.Value != message.BuildingId)
+            if (_profileModel.SelectedBuildingId.Value != message.BuildingId)
             {
-                _heroModel.SelectedBuildingId.Value = message.BuildingId;
+                _profileModel.SelectedBuildingId.Value = message.BuildingId;
             }
         }
     }
