@@ -10,9 +10,8 @@ namespace Game.Scripts.Presentation.Views
         public override void Awake()
         {
             base.Awake();
-            
             _walletText = root.Q<Label>("WalletText");
-            _walletText.text = "0";
+            OnInitialized?.Invoke();
         }
         
         public void SetWalletView(long count)

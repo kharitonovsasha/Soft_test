@@ -1,6 +1,5 @@
 ﻿using System;
 using Game.Scripts.UseCases;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,10 +9,10 @@ namespace Game.Scripts.Installers
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<SelectBuildingUseCase>()
+            builder.Register<SelectBuildingUseCase>(Lifetime.Singleton)
                 .As<IInitializable>()
                 .As<IDisposable>();
-            builder.RegisterEntryPoint<UpgradeBuildingUseCase>()
+            builder.Register<UpgradeBuildingUseCase>(Lifetime.Singleton)
                 .As<IInitializable>()
                 .As<IDisposable>();
         }

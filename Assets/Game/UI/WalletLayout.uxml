@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Game/UI/Main.uss?fileID=7433441132597879392&amp;guid=f97362508e5292e42a356d94dbc5e799&amp;type=3#Main" />
-    <ui:Label text="Label" name="WalletText" style="width: auto; height: 800px; -unity-text-align: upper-left; align-items: flex-start; font-size: 30px; max-height: 800px; min-height: 800px; -unity-font-style: bold;" />
+    <ui:Label text="Label" name="WalletText" style="width: auto; height: 800px; -unity-text-align: upper-left; align-items: flex-start; font-size: 65px; max-height: 800px; min-height: 800px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
 </ui:UXML>

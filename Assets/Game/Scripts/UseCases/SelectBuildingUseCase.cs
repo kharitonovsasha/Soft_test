@@ -9,15 +9,10 @@ namespace Game.Scripts.UseCases
 {
     public class SelectBuildingUseCase : IInitializable, IDisposable
     {
-        private readonly ISubscriber<SelectBuildingDTO> _subscriber;
-        private IDisposable _subscription;
-        
         [Inject] private readonly IProfileModel _profileModel;
-
-        public SelectBuildingUseCase(ISubscriber<SelectBuildingDTO> subscriber)
-        {
-            _subscriber = subscriber;
-        }
+        [Inject] private readonly ISubscriber<SelectBuildingDTO> _subscriber;
+        
+        private IDisposable _subscription;
         
         void IInitializable.Initialize()
         {

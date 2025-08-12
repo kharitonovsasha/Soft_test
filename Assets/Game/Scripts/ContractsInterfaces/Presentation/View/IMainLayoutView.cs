@@ -4,7 +4,7 @@ namespace Game.Scripts.ContractsInterfaces.Presentation.View
 {
     public interface IMainLayoutView
     {
-        event Action OnUpgrade;
+        event Action OnUpgradeClicked;
         void SetInfoText(string text);
     }
 }

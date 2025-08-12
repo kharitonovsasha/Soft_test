@@ -18,7 +18,7 @@ namespace Game.Scripts.Installers
         {
             builder.RegisterInstance(_mainLayoutView)
                 .As<IMainLayoutView>();
-            builder.RegisterEntryPoint<MainLayoutPresenter>()
+            builder.Register<MainLayoutPresenter>(Lifetime.Singleton)
                 .As<IInitializable>()
                 .As<IDisposable>();
             

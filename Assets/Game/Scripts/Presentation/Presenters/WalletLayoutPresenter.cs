@@ -15,13 +15,20 @@ namespace Game.Scripts.Presentation.Presenters
         {
             base.Initialize();
             _disposables = new CompositeDisposable();
+            layoutView.OnInitialized += OnViewInitialized;
             SubscribeToWalletChange();
         }
 
         public override void Dispose()
         {
-            base.Dispose();
+            layoutView.OnInitialized -= OnViewInitialized;
             _disposables?.Dispose();
+            base.Dispose();
+        }
+        
+        private void OnViewInitialized()
+        {
+            layoutView.SetWalletView(_profileModel.Wallet.Value);
         }
 
         private void SubscribeToWalletChange()

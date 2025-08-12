@@ -6,31 +6,38 @@ namespace Game.Scripts.Presentation.Views
 {
     public class MainLayoutView : LayoutViewBase, IMainLayoutView
     {
-        private Button _upgradeButton;
         private Label _infoText;
+        private Label _controlText;
+        private Button _upgradeButton;
         
-        public event Action OnUpgrade; 
+        public event Action OnUpgradeClicked; 
 
         public override void Awake()
         {
             base.Awake();
+            _infoText = root.Q<Label>("InfoText");
+            _controlText = root.Q<Label>("ControlText");
             _upgradeButton = root.Q<Button>("UpgradeButton");
             _upgradeButton.text = "Upgrade";
             _upgradeButton.clicked += OnUpgradeClickedHandler;
-            
-            _infoText = root.Q<Label>("InfoText");
-            _infoText.text = "Empty";
+            OnInitialized?.Invoke();
         }
 
         private void OnUpgradeClickedHandler()
         {
-            OnUpgrade?.Invoke();
+            OnUpgradeClicked?.Invoke();
         }
 
         public void SetInfoText(string text)
         {
             if(_infoText != null)
                 _infoText.text = text;
+        }
+        
+        public void SetControlText(string text)
+        {
+            if(_controlText != null)
+                _controlText.text = text;
         }
     }
 }

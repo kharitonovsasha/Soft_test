@@ -10,15 +10,10 @@ namespace Game.Scripts.UseCases
 {
     public class UpgradeBuildingUseCase : IInitializable, IDisposable
     {
-        private readonly ISubscriber<UpgradeBuildingDTO> _subscriber;
-        private IDisposable _subscription;
-
         [Inject] private readonly IProfileModel _profileModel;
+        [Inject] private readonly ISubscriber<UpgradeBuildingDTO> _subscriber;
 
-        public UpgradeBuildingUseCase(ISubscriber<UpgradeBuildingDTO> subscriber)
-        {
-            _subscriber = subscriber;
-        }
+        private IDisposable _subscription;
 
         void IInitializable.Initialize()
         {
@@ -42,6 +37,10 @@ namespace Game.Scripts.UseCases
                         buildingModel.Level.Value++;
                     }
                 }
+            }
+            else
+            {
+                Debug.LogError("Not enough wallet!");
             }
         }
     }

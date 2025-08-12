@@ -6,7 +6,6 @@ using Game.Scripts.ContractsInterfaces.Repositories;
 using Game.Scripts.Domain.MessageDTO;
 using MessagePipe;
 using UniRx;
-using UnityEngine;
 
 namespace Game.Scripts.Presentation.Presenters
 {
@@ -14,31 +13,21 @@ namespace Game.Scripts.Presentation.Presenters
     {
         [Inject] private readonly IProfileModel _profileModel;
         [Inject] private readonly IBuildingsDataRepository _buildingsDataRepository;
-
-        private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
-        private readonly IPublisher<SelectBuildingDTO> _selectBuildingPublisher;
-        private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
+        [Inject] private readonly ISubscriber<UserInputDTO> _userEventSubscriber;
+        [Inject] private readonly IPublisher<SelectBuildingDTO> _selectBuildingPublisher;
+        [Inject] private readonly IPublisher<UpgradeBuildingDTO> _upgradeBuildingPublisher;
 
         private CompositeDisposable _disposables;
+        
         private const string _selectedColor = "FFF400";
         private const string _defaultColor = "B1B1B";
 
-        public MainLayoutPresenter(
-            ISubscriber<UserInputDTO> subscriber,
-            IPublisher<SelectBuildingDTO> selectBuildingPublisher,
-            IPublisher<UpgradeBuildingDTO> upgradeBuildingPublisher)
-        {
-            _userEventSubscriber = subscriber;
-            _selectBuildingPublisher = selectBuildingPublisher;
-            _upgradeBuildingPublisher = upgradeBuildingPublisher;
-        }
-
         public override void Initialize()
         {
-            Debug.LogError("MainLayoutPresenter: Initialize");
             base.Initialize();
             _disposables = new CompositeDisposable();
-            layoutView.OnUpgrade += PublishUpgradeBuilding;
+            layoutView.OnUpgradeClicked += PublishUpgradeClickedBuilding;
+            layoutView.OnInitialized += OnViewInitialized;
             SubscribeToSelectedBuildingChange();
             SubscribeToBuildingLevelChange();
             SubscribeToUserInputEvent();
@@ -46,9 +35,22 @@ namespace Game.Scripts.Presentation.Presenters
 
         public override void Dispose()
         {
-            base.Dispose();
-            layoutView.OnUpgrade -= PublishUpgradeBuilding;
+            layoutView.OnUpgradeClicked -= PublishUpgradeClickedBuilding;
+            layoutView.OnInitialized -= OnViewInitialized;
             _disposables?.Dispose();
+            base.Dispose();
+        }
+
+        private void OnViewInitialized()
+        {
+            UpdateControlText();
+            UpdateInfoText();
+        }
+
+        private void UpdateControlText()
+        {
+            layoutView.SetControlText($"[SPACE] - Upgrade selected building\n" +
+                                      $"[C] - Select next building");
         }
 
         private void SubscribeToSelectedBuildingChange()
@@ -73,7 +75,9 @@ namespace Game.Scripts.Presentation.Presenters
             {
                 var isSelected = buildingModel.Id.Value == _profileModel.SelectedBuildingId.Value;
                 var color = isSelected ? _selectedColor : _defaultColor;
-                result += $"<color=#{color}>ID: {buildingModel.Id.Value}  |  Level: {buildingModel.Level.Value}</color>\n";
+                result += $"<color=#{color}>ID: {buildingModel.Id.Value}" +
+                          $"  |  Upgrade Price: {_buildingsDataRepository.GetBuildingUpgradePrice(buildingModel.Id.Value)}" +
+                          $"  |  Level: {buildingModel.Level.Value} </color>\n";
             }
             layoutView.SetInfoText(result);
         }
@@ -92,7 +96,7 @@ namespace Game.Scripts.Presentation.Presenters
             
             if (message.InputGroup == InputGroup.Jump)
             {
-                PublishUpgradeBuilding();
+                PublishUpgradeClickedBuilding();
             }
         }
 
@@ -110,7 +114,7 @@ namespace Game.Scripts.Presentation.Presenters
             );
         }
 
-        private void PublishUpgradeBuilding()
+        private void PublishUpgradeClickedBuilding()
         {
             _upgradeBuildingPublisher.Publish(
                 new UpgradeBuildingDTO(
