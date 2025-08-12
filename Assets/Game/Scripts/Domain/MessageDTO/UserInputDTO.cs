@@ -5,10 +5,10 @@ namespace Game.Scripts.Domain.MessageDTO
     public enum InputGroup
     {
         Move, // WASD 
-        Attack, // enter // select next building
-        Interact, // E // upgrade selected building
-        Crouch, // C // add wallet
-        Jump, // space // spent wallet
+        Attack, // enter
+        Interact, // E
+        Crouch, // C // select next building
+        Jump, // space // upgrade selected building
     }
     
     public struct UserInputDTO

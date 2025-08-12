@@ -256,7 +256,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &507828017
+--- !u!1 &450795396
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,34 +264,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 507828019}
-  - component: {fileID: 507828018}
-  m_Layer: 0
-  m_Name: SelectBuildingView
+  - component: {fileID: 450795398}
+  - component: {fileID: 450795399}
+  - component: {fileID: 450795397}
+  m_Layer: 5
+  m_Name: MainLayoutView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &507828018
+--- !u!114 &450795397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507828017}
+  m_GameObject: {fileID: 450795396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734a4dc2c7944d3799f30543feb47943, type: 3}
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &507828019
+  m_PanelSettings: {fileID: 11400000, guid: 5fc417f8fe4cd6b44817ec51a2debe4c, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 87e3994024b7e484bb2ed51d2799c038, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &450795398
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507828017}
+  m_GameObject: {fileID: 450795396}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -300,6 +308,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450795399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450795396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0abede97b8418f979eba95322185a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720583020
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,8 +330,9 @@ GameObject:
   m_Component:
   - component: {fileID: 720583022}
   - component: {fileID: 720583021}
+  - component: {fileID: 720583023}
   m_Layer: 0
-  m_Name: WalletWidgetView
+  m_Name: WalletLayoutView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,50 +365,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1065594403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1065594405}
-  - component: {fileID: 1065594404}
-  m_Layer: 0
-  m_Name: UpgradeBuildingView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1065594404
+--- !u!114 &720583023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065594403}
+  m_GameObject: {fileID: 720583020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13d2e184fe494d5e9ea2965cd61fe2a9, type: 3}
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1065594405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065594403}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_PanelSettings: {fileID: 11400000, guid: 5fc417f8fe4cd6b44817ec51a2debe4c, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 4a51a979043bd2941ac6788cd50fcf68, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
 --- !u!1 &1370244047
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,9 +437,8 @@ MonoBehaviour:
     TypeName: Game.Scripts.Installers.RepositoriesInstaller
   autoRun: 1
   autoInjectGameObjects: []
-  _walletWidgetView: {fileID: 720583021}
-  _upgradeBuildingView: {fileID: 1065594404}
-  _selectBuildingView: {fileID: 507828018}
+  walletLayoutView: {fileID: 720583021}
+  _mainLayoutView: {fileID: 450795399}
 --- !u!114 &1370244052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,5 +574,4 @@ SceneRoots:
   - {fileID: 314479662}
   - {fileID: 1370244049}
   - {fileID: 720583022}
-  - {fileID: 1065594405}
-  - {fileID: 507828019}
+  - {fileID: 450795398}

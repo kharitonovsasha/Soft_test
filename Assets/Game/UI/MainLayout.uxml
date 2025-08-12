@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Game/UI/Main.uss?fileID=7433441132597879392&amp;guid=f97362508e5292e42a356d94dbc5e799&amp;type=3#Main" />
+    <ui:Label text="Label" name="InfoText" style="width: auto; height: 800px; -unity-text-align: middle-center; align-items: flex-start; font-size: 50px; max-height: 800px; min-height: 800px; -unity-font-style: bold;" />
+    <ui:Button text="Button" name="UpgradeButton" style="-unity-font-style: bold; scale: 1 1; height: 100px; width: 300px; align-content: flex-end; justify-content: flex-end; align-self: center; max-width: 300px; max-height: 100px; min-height: 100px; min-width: 300px; bottom: auto;" />
+</ui:UXML>

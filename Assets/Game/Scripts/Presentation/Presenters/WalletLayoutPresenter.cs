@@ -1,36 +1,33 @@
-﻿using System;
-using Game.Scripts.ContractsInterfaces.Domain;
-using Game.Scripts.ContractsInterfaces.Presentation.View;
+﻿using Game.Scripts.ContractsInterfaces.Domain;
+using Game.Scripts.Presentation.Views;
 using UniRx;
-using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace Game.Scripts.Presentation.Presenters
 {
-    public class WalletWidgetPresenter : IInitializable, IDisposable
+    public class WalletLayoutPresenter : LayoutPresenterBase<WalletLayoutView>
     {
         [Inject] private readonly IHeroModel _heroModel;
-        [Inject] private readonly IWalletWidgetView _walletWidgetView;
         
         private CompositeDisposable _disposables;
         
-        void IInitializable.Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             _disposables = new CompositeDisposable();
             SubscribeToWalletChange();
         }
 
-        void IDisposable.Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             _disposables?.Dispose();
         }
 
         private void SubscribeToWalletChange()
         {
-            Debug.LogError($"SubscribeToWalletChange");
             _heroModel.Wallet
-                .Subscribe(_walletWidgetView.SetWalletView)
+                .Subscribe(layoutView.SetWalletView)
                 .AddTo(_disposables);
         }
     }

@@ -32,8 +32,6 @@ namespace Game.Scripts.UseCases
 
         private void Handle(UpgradeBuildingDTO message)
         {
-            Debug.LogError($"UpgradeBuildingUseCase: {message.BuildingId} - {message.UpgradePrice}");
-
             if (_heroModel.Wallet.Value >= message.UpgradePrice)
             {
                 _heroModel.Wallet.Value -= message.UpgradePrice;

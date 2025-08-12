@@ -1,4 +1,5 @@
-﻿using MessagePipe;
+﻿using Game.Scripts.UseCases;
+using MessagePipe;
 using VContainer;
 using VContainer.Unity;
 
@@ -12,7 +13,7 @@ namespace Game.Scripts.Installers
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
             
             //Start
-            builder.Register<Bootstrap>(Lifetime.Singleton)
+            builder.Register<BootstrapUseCase>(Lifetime.Singleton)
                 .As<IInitializable>();
         }
     }
